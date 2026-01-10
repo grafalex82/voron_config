@@ -1,0 +1,27 @@
+CAN, USB2CAN:
+    Useful links:
+	https://canbus.esoterical.online/Getting_Started.html
+	https://docs.meteyou.wtf/btt-u2c-v2.x/candlelight/
+	https://www.youtube.com/watch?v=Qw1DAFXEQ80
+	https://gist.github.com/jfryman/0c3827079e23d7bc55f9677d2c6b8bec
+
+Flash Katapult SB2209:
+	upload katapult using USB MSC flashing
+
+Update SB2209 cmdline:
+	scripts/flashtool.py -f ~/klipper/out/klipper.bin -u 4145afee711c
+
+Flash Katapult Spider:
+	dfu-util
+
+Update Spider cmdline (press reset twice to enter bootloader):
+	scripts/flashtool.py -d /dev/ttyAMA0
+
+Update Catographer firmware:
+	dfu-util -d 0483:df11 -R -a 0 -s "0x08000000:leave" -D Katapult_1m.bin
+
+Start stop services:
+sudo systemctl stop klipper.service
+sudo systemctl start klipper.service
+sudo systemctl stop moonraker.service
+sudo systemctl start moonraker.service
